@@ -3,7 +3,6 @@
 namespace Loggable\Tests\Feature;
 
 use Loggable\Models\Log;
-use Loggable\Tests\Models\Product;
 use Loggable\Tests\TestCase;
 
 class LogDeleteTest extends TestCase
@@ -24,6 +23,5 @@ class LogDeleteTest extends TestCase
         $this->assertEquals($product->toJson(), $log->before);
 
         $this->assertEquals($product->toJson(), $log->after);
-
     }
 }
