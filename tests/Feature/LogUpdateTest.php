@@ -15,15 +15,14 @@ class LogUpdateTest extends TestCase
         $product = $this->getProduct();
 
         $product->update([
-            'name' => 'Changed Name'
+            'name' => 'Changed Name',
         ]);
 
         $this->assertDatabaseHas('logs', [
-            'user_id' => $user->id,
+            'user_id'       => $user->id,
             'loggable_type' => get_class($product),
-            'loggable_id' => $product->id,
+            'loggable_id'   => $product->id,
         ]);
-
     }
 
     public function testLogData()
