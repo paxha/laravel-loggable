@@ -4,7 +4,7 @@
 namespace Loggable\Tests\Feature;
 
 
-use Loggable\Tests\Models\Product;
+use Loggable\Models\Log;
 use Loggable\Tests\TestCase;
 
 class LogCreateTest extends TestCase
@@ -17,10 +17,25 @@ class LogCreateTest extends TestCase
         $product = $this->getProduct();
 
         $this->assertDatabaseHas('logs', [
-            'user_id'       => $user->id,
+            'user_id' => $user->id,
             'loggable_type' => get_class($product),
-            'loggable_id'   => $product->id,
-            'description'   => "New Record ($product->name) Created by - $user->name",
+            'loggable_id' => $product->id,
         ]);
+    }
+
+    public function testLogData()
+    {
+        $user = $this->getUser();
+        $this->actingAs($user);
+
+        $product = $this->getProduct();
+
+        $log = Log::where('loggable_type', get_class($product))->where('loggable_id', $product->id)->first();
+
+        $this->assertEquals("New Record ($product->name) Created by - $user->name", $log->description);
+
+        $this->assertEquals('[]', $log->before);
+
+        $this->assertJsonStringEqualsJsonString($product->toJson(), $log->after);
     }
 }

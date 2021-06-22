@@ -2,6 +2,7 @@
 
 namespace Loggable\Tests\Feature;
 
+use Loggable\Models\Log;
 use Loggable\Tests\Models\Product;
 use Loggable\Tests\TestCase;
 
@@ -16,12 +17,13 @@ class LogDeleteTest extends TestCase
 
         $product->delete();
 
-        $this->assertDatabaseHas('logs',[
-            'user_id'       => $user->id,
-            'loggable_type' => get_class($product),
-            'loggable_id'   => $product->id,
-            'description'   => "A Record ($product->name) Deleted by - $user->name",
-        ]);
+        $log = Log::where('loggable_type', get_class($product))->where('loggable_id', $product->id)->get()->last();
+
+        $this->assertEquals("A Record ($product->name) Deleted by - $user->name", $log->description);
+
+        $this->assertEquals($product->toJson(), $log->before);
+
+        $this->assertEquals($product->toJson(), $log->after);
 
     }
 }
