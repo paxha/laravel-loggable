@@ -17,23 +17,7 @@ Add the package to your Laravel app using composer
 composer require paxha/laravel-loggable
 ```
 
-### Service Provider
-
-Register the package's service provider in config/app.php. In Laravel versions 5.5 and beyond, this step can be skipped if package auto-discovery is enabled.
-
-```
-'providers' => [
-
-    ...
-    paxha\Loggable\LoggableServiceProvider::class,
-    paxha\Loggable\LoggableEventServiceProvider::class,
-    ...
-
-];
-```
-
-
-### Migrations
+### Getting Started
 
 Execute the Artisan command to run the migrations.
 
