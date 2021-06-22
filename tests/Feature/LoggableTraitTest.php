@@ -14,14 +14,14 @@ class LoggableTraitTest extends TestCase
 
         $productName = 'Product 1';
         $product = Product::create([
-            'name' => $productName
+            'name' => $productName,
         ]);
 
         $this->assertDatabaseHas('logs', [
-            'user_id' => $user->id,
+            'user_id'       => $user->id,
             'loggable_type' => get_class($product),
-            'loggable_id' => $product->id,
-            'description' => "New Record ($productName) Created by - $user->name"
+            'loggable_id'   => $product->id,
+            'description'   => "New Record ($productName) Created by - $user->name",
         ]);
     }
 }

@@ -10,8 +10,8 @@ class LoggableEventServiceProvider extends EventServiceProvider
 {
     protected $listen = [
         LogEvent::class => [
-            LogListener::class
-        ]
+            LogListener::class,
+        ],
     ];
 
     /**

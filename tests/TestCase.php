@@ -33,17 +33,17 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function defineDatabaseMigrations()
     {
         $this->loadLaravelMigrations();
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     protected function getUser()
     {
         return User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'name'              => 'Admin',
+            'email'             => 'admin@example.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('password'),
-            'remember_token' => Str::random(10),
+            'password'          => bcrypt('password'),
+            'remember_token'    => Str::random(10),
         ]);
     }
 }
