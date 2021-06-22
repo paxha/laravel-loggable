@@ -6,53 +6,57 @@
 <a href="https://packagist.org/packages/paxha/laravel-loggable"><img src="https://poser.pugx.org/paxha/laravel-loggable/license.svg?format=flat-square" alt="License"></a>
 </p>
 
-## Introduction
-This Laravel Eloquent extension provides recursive relationships using common table.
+Simple Laravel package to log CRUD operations of Models.
+
 
 ## Installation
 
-    composer require paxha/laravel-recursive-relationships
+Add the package to your Laravel app using composer
 
+```
+composer require paxha/laravel-loggable
+```
+
+### Service Provider
+
+Register the package's service provider in config/app.php. In Laravel versions 5.5 and beyond, this step can be skipped if package auto-discovery is enabled.
+
+```
+'providers' => [
+
+    ...
+    paxha\Loggable\LoggableServiceProvider::class,
+    paxha\Loggable\LoggableEventServiceProvider::class,
+    ...
+
+];
+```
+
+
+### Migrations
+
+Execute the Artisan command to run the migrations.
+
+```
+php artisan migrate
+
+```
 ## Usage
 
--   [Getting Started](#getting-started)
--   [Relationships](#relationships)
--   [Scopes](#scopes)
--   [Functions](#functions)
+To start logging CRUD operations simply use the trait on your models.
 
-### Getting Started
-
-Consider the following table schema for hierarchical data:
-
-```php
-Schema::create('users', function (Blueprint $table) {
-    $table->increments('id');
-    $table->unsignedInteger('parent_id')->nullable();
-});
 ```
+use Loggable\Traits\Loggable;
 
-Use the `HasRecursiveRelationships` trait in your model to work with recursive relationships:
-
-```php
-class User extends Model
+class Post extends Model
 {
-    use \RecursiveRelationships\Traits\HasRecursiveRelationships;
-}
+    use Loggable;
+
+    ...
 ```
 
-By default, the trait expects a parent key named `parent_id`. You can customize it by overriding `getParentKeyName()`:
 
-```php
-class User extends Model
-{
-    use \RecursiveRelationships\Traits\HasRecursiveRelationships;
-
-    public function getParentKeyName()
-    {
-        return 'user_id'; // or anything
-    }
-}
-```
+---
 
 ## License
 
