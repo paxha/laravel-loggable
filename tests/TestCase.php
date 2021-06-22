@@ -4,7 +4,7 @@ namespace Loggable\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Loggable\LoggableServiceProvider;
+use Loggable\LoggableEventServiceProvider;
 use Loggable\Tests\Models\User;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -21,7 +21,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            LoggableServiceProvider::class,
+            LoggableEventServiceProvider::class,
         ];
     }
 

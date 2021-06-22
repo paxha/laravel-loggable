@@ -2,17 +2,19 @@
 
 namespace Loggable;
 
-use Illuminate\Foundation\Support\Providers\EventServiceProvider;
-use Loggable\Events\LogEvent;
-use Loggable\Listeners\LogListener;
+use Illuminate\Support\ServiceProvider;
 
-class LoggableServiceProvider extends EventServiceProvider
+class LoggableServiceProvider extends ServiceProvider
 {
-    protected $listen = [
-        LogEvent::class => [
-            LogListener::class
-        ]
-    ];
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
     /**
      * Bootstrap services.
@@ -21,8 +23,6 @@ class LoggableServiceProvider extends EventServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
-        //
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }
