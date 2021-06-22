@@ -5,6 +5,7 @@ namespace Loggable\Tests;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Loggable\LoggableEventServiceProvider;
+use Loggable\Tests\Models\Product;
 use Loggable\Tests\Models\User;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -44,6 +45,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'email_verified_at' => now(),
             'password'          => bcrypt('password'),
             'remember_token'    => Str::random(10),
+        ]);
+    }
+    protected function getProduct()
+    {
+        return Product::create([
+            'name' => 'Test Product',
         ]);
     }
 }

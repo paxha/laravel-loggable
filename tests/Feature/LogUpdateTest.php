@@ -5,23 +5,25 @@ namespace Loggable\Tests\Feature;
 use Loggable\Tests\Models\Product;
 use Loggable\Tests\TestCase;
 
-class LoggableTraitTest extends TestCase
+class LogUpdateTest extends TestCase
 {
-    public function testOnRecordCreateLogShouldBeCreated()
+    public function testLogShouldBeUpdated()
     {
         $user = $this->getUser();
         $this->actingAs($user);
 
-        $productName = 'Product 1';
-        $product = Product::create([
-            'name' => $productName,
+        $product = $this->getProduct();
+
+        $product->update([
+            'name' => 'Changed Name'
         ]);
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas('logs',[
             'user_id'       => $user->id,
             'loggable_type' => get_class($product),
             'loggable_id'   => $product->id,
-            'description'   => "New Record ($productName) Created by - $user->name",
+            'description'   => "A Record ($product->name) Updated by - $user->name",
         ]);
+
     }
 }

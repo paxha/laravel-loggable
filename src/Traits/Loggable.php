@@ -19,13 +19,17 @@ trait Loggable
 
         static::updated(function ($model) {
             if (auth()->check()) {
-                event(new LogEvent(auth()->id(), 'An Existing Record Updated', $model->getOriginal(), $model));
+                $user = @auth()->user()->name;
+                $record = @$model->name;
+                event(new LogEvent(auth()->id(), "A Record ($record) Updated by - $user", $model->getOriginal(), $model));
             }
         });
 
         static::deleted(function ($model) {
             if (auth()->check()) {
-                event(new LogEvent(auth()->id(), 'A Record Deleted', $model->getOriginal(), $model));
+                $user = @auth()->user()->name;
+                $record = @$model->name;
+                event(new LogEvent(auth()->id(), "A Record ($record) Deleted by - $user", $model->getOriginal(), $model));
             }
         });
     }
