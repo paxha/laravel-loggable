@@ -25,7 +25,6 @@ class LogListener
      */
     public function handle(LogEvent $event)
     {
-//        dd(gettype($event->after));
         $event->after->logs()->create([
             'user_id'     => $event->user_id,
             'description' => $event->description,
