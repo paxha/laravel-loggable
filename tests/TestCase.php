@@ -47,10 +47,16 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'remember_token'    => Str::random(10),
         ]);
     }
+
     protected function getProduct()
     {
         return Product::create([
             'name' => 'Test Product',
         ]);
+    }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('loggable.model', User::class);
     }
 }

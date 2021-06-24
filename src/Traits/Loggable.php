@@ -38,4 +38,8 @@ trait Loggable
     {
         return $this->morphMany(Log::class, 'loggable');
     }
+
+    public function user(){
+        return $this->belongsTo(config('loggable.model', \App\Models\User::class),'user_id');
+    }
 }

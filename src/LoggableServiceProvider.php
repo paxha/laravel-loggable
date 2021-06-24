@@ -24,5 +24,10 @@ class LoggableServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        /*Config Publishable*/
+        $this->publishes([
+            __DIR__.'/../config/laravel-loggable.php' => config_path('loggable.php'),
+        ], 'loggable-config');
     }
 }
