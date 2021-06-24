@@ -2,8 +2,6 @@
 
 namespace Loggable\Tests\Feature;
 
-use Loggable\Models\Log;
-use Loggable\Tests\Models\User;
 use Loggable\Tests\TestCase;
 
 class UserLogTest extends TestCase
@@ -32,6 +30,5 @@ class UserLogTest extends TestCase
         $this->assertEquals("New Record ($beforeActedUpon) Created by - $actor", $logs->first()->description);
         $this->assertEquals("A Record ($afterActedUpon) Updated by - $actor", $logs[1]->description);
         $this->assertEquals("A Record ($afterActedUpon) Deleted by - $actor", $logs->last()->description);
-
     }
 }
