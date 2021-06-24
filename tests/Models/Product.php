@@ -12,4 +12,9 @@ class Product extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function getActedUpon()
+    {
+        return $this->name;
+    }
 }

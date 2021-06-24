@@ -54,4 +54,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'name' => 'Test Product',
         ]);
     }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('loggable.model', User::class);
+    }
 }

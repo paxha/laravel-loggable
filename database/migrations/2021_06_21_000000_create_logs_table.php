@@ -15,7 +15,7 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->on(config('loggable.model')->getTable())->nullOnDelete();
             $table->nullableMorphs('loggable');
             $table->longText('description')->nullable();
             $table->json('before')->nullable();
