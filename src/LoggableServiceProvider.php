@@ -27,7 +27,7 @@ class LoggableServiceProvider extends ServiceProvider
 
         /*Config Publishable*/
         $this->publishes([
-            __DIR__.'/../config/laravel-loggable.php' => config_path('loggable.php'),
+            __DIR__.'/../config/loggable.php' => config_path('loggable.php'),
         ], 'loggable-config');
     }
 }
