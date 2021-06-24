@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Loggable\Tests\Feature;
-
 
 use Loggable\Models\Log;
 use Loggable\Tests\TestCase;
@@ -17,9 +15,9 @@ class LogCreateTest extends TestCase
         $product = $this->getProduct();
 
         $this->assertDatabaseHas('logs', [
-            'user_id' => $user->id,
+            'user_id'       => $user->id,
             'loggable_type' => get_class($product),
-            'loggable_id' => $product->id,
+            'loggable_id'   => $product->id,
         ]);
     }
 
