@@ -32,13 +32,63 @@ To start logging CRUD operations simply use the trait on your models.
 ```
 use Loggable\Traits\Loggable;
 
-class Post extends Model
+class Product extends Model
 {
     use Loggable;
 
     ...
 ```
+Logs that are stored in database are something like this string
 
+"A New **Product 1** is Created by - User Name"
+
+to override this name string you can write this method in your Model.
+ 
+by default it will take **name** column
+```
+use Loggable\Traits\Loggable;
+
+class Product extends Model
+{
+    use HasLogs;
+
+    public function getActedUpon(){
+        return $this->title;
+    }
+}
+```
+it can be any column from your Loggable table like name,title,product_name or anything
+
+You can retrieve Authenticatable Model's Logs by using this Trait **HasLogs**
+```
+use Loggable\Traits\Loggable;
+
+class User extends Model
+{
+    use HasLogs;
+
+    ...
+```
+Logs that are stored in database are something like this string
+
+"A New Product 1 is Created by - **User Name**"
+
+to override this user's name string you can write this method in your Model.
+ ```
+ use Loggable\Traits\Loggable;
+ 
+ class User extends Model
+ {
+     use HasLogs;
+ 
+     public function getActor(){
+         return $this->first_name." ".$this->last_name;
+     }
+ }
+ ```
+by default it will take **name** column
+
+it can be any column from your Autheticatable table like name,email,id or anything
 
 ---
 
