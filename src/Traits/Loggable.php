@@ -48,4 +48,14 @@ trait Loggable
     {
         return $this->name;
     }
+
+    public function getRelationLogs($model)
+    {
+        $relationLogs = null;
+        foreach ($model->getRelations as $relation) {
+            $relationLogs[$relation] = @$model->{$relation}()->get();
+        }
+
+        return $relationLogs;
+    }
 }
