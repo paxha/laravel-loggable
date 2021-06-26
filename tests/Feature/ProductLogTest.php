@@ -4,7 +4,6 @@ namespace Loggable\Tests\Feature;
 
 use Loggable\Tests\TestCase;
 
-
 class ProductLogTest extends TestCase
 {
     public function testProductShouldHaveLogs()
