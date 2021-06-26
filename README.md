@@ -64,7 +64,7 @@ it can be any column from your Loggable table like name,title,product_name or an
 
 You can retrieve Loggable Model's Logs
 ```
- $product_logs = Product::first()->logs();
+$product_logs = Product::first()->logs();
 // return Array of first Product's logs
  ```
 You can retrieve Authenticatable Model's Logs by using this Trait **HasLogs**
@@ -78,7 +78,7 @@ class User extends Model
     ...
 ```
 ```
- $user_logs = auth()->user()->logs();
+$user_logs = auth()->user()->logs();
 // return Array of current authenticated User's logs
  ```
 Logs that are stored in database are something like this string
@@ -117,7 +117,7 @@ if you want to use both Traits in One Model you will need to implement this code
  ```
 you can choose any name instead of **historyLogs**
 ```
- $user_logs = auth()->user()->historyLogs();
+$user_logs = auth()->user()->historyLogs();
 // return Array of current authenticated User's logs
  ```
 
