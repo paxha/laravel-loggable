@@ -39,7 +39,7 @@ class Product extends Model
 
     ...
 ```
-###Model's Logs
+### Model's Logs
 Logs that are stored in database are something like this string
 
 "A New **Product 1** is Created by - User Name"
@@ -82,7 +82,7 @@ $user_logs = auth()->user()->logs();
 // return Array of current authenticated User's logs
  ```
 Logs that are stored in database are something like this string
-###User's Logs
+### User's Logs
 "A New Product 1 is Created by - **User Name**"
 
 to override this bold user's **name** string you can write this method in your Model.
@@ -102,7 +102,7 @@ to override this bold user's **name** string you can write this method in your M
 by default it will take **name** column
 
 it can be any column from your Autheticatable table like name,email,id or anything
-####Using Both Traits in one Place
+#### Using Both Traits in one Place
 if you want to use both Traits in One Model you will need to implement this code snippet to overcome multiple inheritence problem
 ```
  use Loggable\Traits\Loggable;
